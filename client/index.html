@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="./src/style.css">
+</head>
+
+<body>
+	<table>
+		<tr>
+			<td id="row-1">
+				<div id="slide"></div>
+				<img src="vtdt.jpg" alt="VTDT Image" class="vtdt-image">
+			</td>
+			<td id="confetti-container"></td>
+			<td>
+				<button id="rotate-btn">Click Me</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="bubble-container">
+					<div class="bubble"></div>
+				</div>
+			</td>
+			<td>
+				<div class="link-container">
+					<a href="https://www.example.com" target="_blank">Link 1 - Example</a>
+					<a href="https://www.google.com" target="_blank">Link 2 - Google</a>
+					<a href="https://www.wikipedia.org" target="_blank">Link 3 - Wikipedia</a>
+					<a href="https://www.github.com" target="_blank">Link 4 - GitHub</a>
+					<a href="https://www.reddit.com" target="_blank">Link 5 - Reddit</a>
+				</div>
+			</td>
+			<td id="weather"></td>
+		</tr>
+		<tr>
+			<td>
+				<form id="inputForm">
+					<label for="first_name">Vārds:</label>
+					<input type="text" id="first_name" name="first_name" required>
+					<br>
+
+					<label for="last_name">Uzvārds:</label>
+					<input type="text" id="last_name" name="last_name" required>
+					<br>
+
+					<label for="phone">Tālruņa numurs:</label>
+					<input type="tel" id="phone" name="phone" pattern="\d{8,15}" required>
+					<br>
+
+					<label for="personal_code">Personas kods:</label>
+					<input type="text" id="personal_code" name="personal_code" pattern="\d{11}" required>
+					<br>
+
+					<input type="submit" value="Iesniegt">
+				</form>
+			</td>
+			<td>
+				<form id="editForm">
+					<input type="hidden" id="user_id" name="user_id">
+
+					<label for="first_name">Vārds:</label>
+					<input type="text" id="first_name" name="first_name" required>
+					<br>
+
+					<label for="last_name">Uzvārds:</label>
+					<input type="text" id="last_name" name="last_name" required>
+					<br>
+
+					<label for="phone">Tālruņa numurs:</label>
+					<input type="tel" id="phone" name="phone" pattern="\d{8,15}" required>
+					<br>
+
+					<label for="personal_code">Personas kods:</label>
+					<input type="text" id="personal_code" name="personal_code" pattern="\d{11}" required>
+					<br>
+
+					<input type="submit" value="Atjaunināt">
+				</form>
+			</td>
+			<td>
+				<form id="deleteForm" action="delete.php" method="POST">
+					<label for="user_id">Lietotāja ID:</label>
+					<input type="text" id="user_id" name="user_id" required>
+					<br>
+					<input type="submit" value="Izdzēst">
+				</form>
+			</td>
+		</tr>
+	</table>
+	<script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
