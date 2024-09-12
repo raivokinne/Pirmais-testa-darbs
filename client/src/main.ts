@@ -1,4 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
+	async function fetchUserData() {
+		try {
+			const response = await fetch('http://localhost:8080/');
+			if (response.ok) {
+				const userData = await response.json();
+				const selectElement = document.getElementById('select') as HTMLSelectElement;
+
+				selectElement.innerHTML = '';
+
+				for (const user of userData) {
+					const option = document.createElement('option');
+					option.value = user.id;
+					option.textContent = user.first_name + ' ' + user.last_name;
+					selectElement.appendChild(option);
+				}
+			} else {
+				alert('Kļūda, iegūstot lietotāja datus.');
+			}
+		} catch (error) {
+			console.error('Kļūda:', error);
+			alert('Kļūda, iegūstot lietotāja datus.');
+		}
+	}
+
+	fetchUserData();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
 	const form = document.getElementById('inputForm') as HTMLFormElement;
 
 	form.addEventListener('submit', async (event: Event) => {
@@ -7,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const formData = new FormData(form);
 
 		try {
-			const response = await fetch('http://localhost:8080/', {
+			const response = await fetch('http://localhost:8080/create.php', {
 				method: 'POST',
 				body: formData
 			});
@@ -28,12 +56,31 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
 	const form = document.getElementById('editForm') as HTMLFormElement;
 
-	const urlParams = new URLSearchParams(window.location.search);
-	const userId = urlParams.get('id');
+	async function fetchUserData() {
+		try {
+			const response = await fetch('http://localhost:8080/');
+			if (response.ok) {
+				const userData = await response.json();
+				const selectElement = document.getElementById('select1') as HTMLSelectElement;
 
-	if (userId) {
-		fetchUserData(userId);
+				selectElement.innerHTML = '';
+
+				for (const user of userData) {
+					const option = document.createElement('option');
+					option.value = user.id;
+					option.textContent = user.first_name + ' ' + user.last_name;
+					selectElement.appendChild(option);
+				}
+			} else {
+				alert('Kļūda, iegūstot lietotāja datus.');
+			}
+		} catch (error) {
+			console.error('Kļūda:', error);
+			alert('Kļūda, iegūstot lietotāja datus.');
+		}
 	}
+
+	fetchUserData();
 
 	form.addEventListener('submit', async (event: Event) => {
 		event.preventDefault();
@@ -57,29 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			alert('Kļūda, nosūtot datus.');
 		}
 	});
-
-	async function fetchUserData(userId: string) {
-		try {
-			const response = await fetch(`edit.php?id=${userId}`);
-			if (response.ok) {
-				const userData = await response.json();
-				populateForm(userData);
-			} else {
-				alert('Kļūda, iegūstot lietotāja datus.');
-			}
-		} catch (error) {
-			console.error('Kļūda:', error);
-			alert('Kļūda, iegūstot lietotāja datus.');
-		}
-	}
-
-	function populateForm(userData: any) {
-		(document.getElementById('user_id') as HTMLInputElement).value = userData.id;
-		(document.getElementById('first_name') as HTMLInputElement).value = userData.first_name;
-		(document.getElementById('last_name') as HTMLInputElement).value = userData.last_name;
-		(document.getElementById('phone') as HTMLInputElement).value = userData.phone;
-		(document.getElementById('personal_code') as HTMLInputElement).value = userData.personal_code;
-	}
 });
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -60,7 +60,10 @@
 			</td>
 			<td>
 				<form id="editForm">
-					<input type="hidden" id="user_id" name="user_id">
+					<label for="select1">Lietotajs</label>
+					<select id="select1" name="user_id">
+					</select>
+					<br>
 
 					<label for="first_name">Vārds:</label>
 					<input type="text" id="first_name" name="first_name" required>
@@ -82,9 +85,10 @@
 				</form>
 			</td>
 			<td>
-				<form id="deleteForm" action="delete.php" method="POST">
+				<form id="deleteForm">
 					<label for="user_id">Lietotāja ID:</label>
-					<input type="text" id="user_id" name="user_id" required>
+					<select id="select" name="user_id">
+					</select>
 					<br>
 					<input type="submit" value="Izdzēst">
 				</form>
